@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your MBTI personality type</title>
+    <style>
+        .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #800080;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -50px;
+  transition: 0.75s;
+}
+
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+      body {
+      background-image: url("https://wallpaperforu.com/wp-content/uploads/2021/03/Wallpaper-1920x1080-Px-Digital-Art-Japan-Minimalism-Simple50.jpg");
+
+      background-size: cover;
+      }
+      h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+}
+      h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  }
+
+     h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+}
+h4 {
+  display: block;
+  font-size: 1em;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
+}
+}
+    </style>
+    <link rel="stylesheet"
+     href="{{url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2 style="background-color:#FFC0CB; font-family:verdana;" align="middle">The text which you entered previously:</h2>
+    <h4 style="background-color:#F0E68C; font-family:helvetica;" align="justify"><div>{{ content }}</div></h4>
+    <h2 style="background-color:#F5DEB3; font-family:Georgia;position: absolute; top: 70px; left: 650px; width: 500px; height: 60px; " align="middle">According to our algorithm, your MBTI personality type is: {{ results }} </h2>
+    <div style="padding:20px;background-color:#decddd; font-family:Tahoma;position: absolute; top: 200px; left: 650px; width: 270px; height: 20px; float:left" align="middle">Percentage Introversion : {{ i_probab }}%</div>
+    <div style="padding:20px;background-color:#cedddd; font-family:Tahoma;position: absolute; top: 200px; left: 960px; width: 270px; height: 20px; float:left" align="middle">Percentage Extroversion : {{ e_probab }}%</div>
+    <div style="padding:20px;background-color:#cedddd; font-family:Tahoma;position: absolute; top: 260px; left: 650px; width: 270px; height: 20px; float:left" align="middle">Percentage Intuition : {{ n_probab }}%</div>
+    <div style="padding:20px;background-color:#decddd; font-family:Tahoma;position: absolute; top: 260px; left: 960px; width: 270px; height: 20px; float:left" align="middle">Percentage Sensing : {{ s_probab }}%</div>
+    <div style="padding:20px;background-color:#decddd; font-family:Tahoma;position: absolute; top: 320px; left: 650px; width: 270px; height: 20px; float:left" align="middle">Percentage Thinking : {{ t_probab }}%</div>
+    <div style="padding:20px;background-color:#cedddd; font-family:Tahoma;position: absolute; top: 320px; left: 960px; width: 270px; height: 20px; float:left" align="middle">Percentage Feeling : {{ f_probab }}%</div>
+    <div style="padding:20px;background-color:#cedddd; font-family:Tahoma;position: absolute; top: 380px; left: 650px; width: 270px; height: 20px; float:left" align="middle">Percentage Judging : {{ j_probab }}%</div>
+    <div style="padding:20px;background-color:#decddd; font-family:Tahoma;position: absolute; top: 380px; left: 960px; width: 270px; height: 20px; float:left" align="middle">Percentage Perceiving : {{ p_probab }}%</div>
+
+    <!--<h4 style="background-color:#F0E68C" align="justify"><div>{{ t_probab }}</div></h4>
+    <h4 style="background-color:#F0E68C" align="justify"><div>{{ j_probab }}</div></h4>-->
+    <!--<h2><div>{{ results }}</div></h2>-->
+
+    <div id='button'>
+        <form action="/thanks" method="post">
+            <!--<input type=submit value='Push entry into database' name='db_entry_button'>-->
+            <button name='db_entry_button' class="button" style="vertical-align:middle; position: absolute; top: 450px; left: 650px; width: 570px; height: 72px;background-color: #A0522D"><span>Push entry into database </span></button>
+            <input type=hidden value='{{ content }}' name='content'>
+            <input type=hidden value='{{ results }}' name='results'>
+        </form>
+    </div>
+
+    <div id='button'>
+        <form action='/'>
+            <!--<input type=submit value='Predict some more MBTI personalities?'>-->
+            <button class="button" style="vertical-align:middle;position: absolute; top: 530px; left: 650px; width: 610px; height: 72px;"><span>Predict some more MBTI personality types? </span></button>
+        </form>
+    </div>
+
+</body>
+</html>
